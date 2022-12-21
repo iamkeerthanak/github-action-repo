@@ -25,7 +25,7 @@ jobs:
         username: admin
         password: ${{ secrets.password }}
         format: maven2
-        repository: maven-sonar-nexus-repo
+        repository: maven-releases
         coordinates: groupId=com.example artifactId=app version=1.0.0
         assets: extension=jar
         filename: ./target/gs-maven-0.1.0-shaded.jar
