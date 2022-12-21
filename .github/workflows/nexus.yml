@@ -28,4 +28,4 @@ jobs:
         repository: maven-sonar-nexus-repo
         coordinates: groupId=com.example artifactId=app version=1.0.0
         assets: extension=jar
-        filename: ./target/app-1.0.0.jar
+        filename: ./target/gs-maven-0.1.0-shaded.jar
