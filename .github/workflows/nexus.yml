@@ -28,4 +28,4 @@ jobs:
         repository: maven-releases
         coordinates: groupId=com.example artifactId=app version=1.0.0
         assets: extension=jar
-        filename: ./target/gs-maven-0.1.0-shaded.jar
+        filename: ./target/gs-maven-0.1.0-shaded.war
