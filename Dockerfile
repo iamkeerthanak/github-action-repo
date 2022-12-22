@@ -1,4 +1,4 @@
 FROM openjdk:8
 EXPOSE 8080
-ADD target/springboot-images-new.jar springboot-images-new.jar
-ENTRYPOINT ["java","-jar","/springboot-images-new.jar"]
+ADD target/gs-maven-0.1.0.jar gs-maven-0.1.0-new.jar
+ENTRYPOINT ["java","-jar","/gs-maven-0.1.0-images-new.jar"]
