@@ -43,7 +43,7 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: maxhunt/github-actions-repo
-          tags: latest#1
+          tags: latest
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
