@@ -2,10 +2,10 @@
 FROM nginx:latest
 
 # Copy the jar file from maven target
-ADD /target/gs-maven-0.1.0.jar app.jar .
+ADD /target/gs-maven-0.1.0.jar app.jar
 
 COPY app.jar /usr/share/nginx/html
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","app.jar"]
+CMD ["nginx", "-g", "daemon off;"]
