@@ -2,7 +2,7 @@
 FROM ubuntu:latest
 
 # Copy the jar file from maven target
-COPY /home/ubuntu/actions-runner/_work/maven-project-test/maven-project-test/target/gs-maven-0.1.0.jar /home/ubuntu/app.jar
+ADD /home/ubuntu/actions-runner/_work/maven-project-test/maven-project-test/target/gs-maven-0.1.0.jar app.jar
 
 # Last is the actual command to start up NGINX within our Container
 CMD ["nginx", "-g", "daemon off;"]
