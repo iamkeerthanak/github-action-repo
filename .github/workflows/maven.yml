@@ -53,7 +53,7 @@ jobs:
          username: admin
          password: ${{ secrets.NEXUS_PASSWORD }}
          format: maven2
-         repository: maven-releases
+         repository: nexus-repo-demo
          coordinates: groupId=com.example artifactId=app version=1.0.0
          assets: extension=jar
          filename: ./target/gs-maven-0.1.0.jar
