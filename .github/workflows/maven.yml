@@ -42,7 +42,7 @@ jobs:
          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build the latest Docker image
-        run: docker build . --file Dockerfile --tag maxhunt/demo:latest
+        run: docker build /opt --file Dockerfile --tag maxhunt/demo:latest
         
       - name: Nexus Repo Publish
         uses: sonatype-nexus-community/nexus-repo-github-action@master
