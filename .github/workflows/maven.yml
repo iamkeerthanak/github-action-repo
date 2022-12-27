@@ -50,11 +50,10 @@ jobs:
          serverUrl: http://35.154.152.112:8081
          username: admin
          password: ${{ secrets.NEXUS_PASSWORD }}
-         #run: docker image push demo:latest
          format: docker
          repository: java-maven-project
-         coordinates: groupId=com.example artifactId=app version=1.0.0
-         assets: extension=tar
+         coordinates: directory=nexus-repo-github-action-test-rawrepodir
+         assets: demo:latest
          filename: demo:latest
          
          
