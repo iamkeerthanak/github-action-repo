@@ -54,6 +54,7 @@ jobs:
          format: docker
          repository: java-maven-project
          coordinates: groupId=com.example artifactId=app version=1.0.0
+         assets: extension=jar
          filename: demo:latest
          
          
