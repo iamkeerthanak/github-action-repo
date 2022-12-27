@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-
 jobs:
   build:
     name: Build
@@ -34,7 +33,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=maven-project
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=java-maven-project
 
      # - name: Build & push Docker image
       #  uses: mr-smithers-excellent/docker-build-push@v5
@@ -42,19 +41,19 @@ jobs:
        #   image: maxhunt/github-actions-repo
         #  tags: build #1
          # registry: docker.io
-          #dockerfile: Dockerfile
-          #username: ${{ secrets.DOCKER_USERNAME }}
-          #password: ${{ secrets.DOCKER_PASSWORD }}
+          # dockerfile: Dockerfile
+          # username: ${{ secrets.DOCKER_USERNAME }}
+          # password: ${{ secrets.DOCKER_PASSWORD }}
           
-      - name: Nexus Repo Publish
-        uses: sonatype-nexus-community/nexus-repo-github-action@master
-        with:
-         serverUrl: http://13.126.145.123:8081
-         username: admin
-         password: ${{ secrets.PASSWORD }}
-         format: maven2
-         repository: maven-releases
-         coordinates: groupId=com.example artifactId=app version=1.0.0
-         assets: extension=jar
-         filename: ./target/gs-maven-0.1.0.jar
+      #- name: Nexus Repo Publish
+       # uses: sonatype-nexus-community/nexus-repo-github-action@master
+       # with:
+        # serverUrl: http://13.126.145.123:8081
+        # username: admin
+        # password: ${{ secrets.PASSWORD }}
+        # format: maven2
+        # repository: maven-releases
+        # coordinates: groupId=com.example artifactId=app version=1.0.0
+        # assets: extension=jar
+        # filename: ./target/gs-maven-0.1.0.jar
 
