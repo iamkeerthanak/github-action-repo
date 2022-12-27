@@ -35,6 +35,18 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=java-maven-project
 
+      - uses: actions/checkout@v1
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      - name: Build the latest Docker image
+        run: docker build . --file Dockerfile --tag maxhunt/demo:latest
+        
+      - name: Push the latest Docker image to nexus repo
+        run: docker push <nexus-host>:8081/demo:latest      
+
+
+      
      # - name: Build & push Docker image
       #  uses: mr-smithers-excellent/docker-build-push@v5
       #  with:
