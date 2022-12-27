@@ -50,7 +50,9 @@ jobs:
          serverUrl: http://35.154.152.112:8081/repository/java-maven-project/
          username: admin
          password: ${{ secrets.NEXUS_PASSWORD }}
-         run: docker push demo:latest 
+         run: docker image push demo:latest 
+        
+        
         # format: maven2
          #repository: maven-releases
          #coordinates: groupId=com.example artifactId=app version=1.0.0
