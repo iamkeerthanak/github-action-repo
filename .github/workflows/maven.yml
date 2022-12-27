@@ -53,6 +53,7 @@ jobs:
          #run: docker image push demo:latest
          format: docker
          repository: java-maven-project
+         coordinates: groupId=com.example artifactId=app version=1.0.0
          filename: demo:latest
          
          
