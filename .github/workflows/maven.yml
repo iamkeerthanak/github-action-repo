@@ -46,6 +46,6 @@ jobs:
  
       - name: Push the image to nexus repo
         run: |
-         docker login -u admin -p admin123 http://15.206.81.210:8083
-         docker tag maxhunt/demo:latest 15.206.81.210:8083/demo:1.0.0
-         docker push http://15.206.81.210:8083/demo:latest
+         docker login -u admin -p admin123 http://3.7.248.35:8083
+         docker tag maxhunt/demo:latest 3.7.248.35:8083/demo:1.0.0
+         docker push http://3.7.248.35:8083/demo:latest
