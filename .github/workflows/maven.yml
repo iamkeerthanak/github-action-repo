@@ -46,8 +46,8 @@ jobs:
  
       - name: Push the image to nexus repo
         run: |
-         docker login -u admin -p admin123 http://15.206.81.210:8081/repository/docker-hosted/
-         docker push 15.206.81.210:8083/java-maven-project/demo:latest
+         docker login -u admin -p admin123 15.206.81.210:8083
+         docker push 15.206.81.210:8083/demo:latest
         
 
 
