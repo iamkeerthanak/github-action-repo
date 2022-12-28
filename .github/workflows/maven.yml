@@ -53,6 +53,7 @@ jobs:
 
 
 
+
     #  - name: Docker login
      #   uses: docker/login-action@v2
      #   with:
@@ -74,10 +75,8 @@ jobs:
        #  assets: demo:latest
        #  filename: demo:latest
          
-         
          # coordinates: groupId=com.example artifactId=app version=1.0.0
         # assets: extension=jar
-        
         
         # format: maven2
          #repository: maven-releases
