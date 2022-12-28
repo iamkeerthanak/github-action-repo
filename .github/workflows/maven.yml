@@ -46,8 +46,8 @@ jobs:
  
       - name: Push the image to nexus repo
         run: |
-         docker login -u maxhunt -p ${{ secrets.DOCKER_PASSWORD }} http://3.7.248.35:8081/
-         docker push http://3.7.248.35:8083/demo:latest
+         docker login -u admin -p admin123 http://15.206.81.210:8083/repository/docker-hosted/
+         docker push http://15.206.81.210:8083/docker-hosted/demo:latest
         
 
 
