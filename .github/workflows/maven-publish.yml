@@ -24,6 +24,14 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - name: Generate build number
+      uses: einaregilsson/build-number@v3
+      with:
+        token: ${{secrets.github_token}}        
+    - name: Print new build number
+      run: echo "Build number is $BUILD_NUMBER"
+      # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
+      
     - name: Get Time
       id: time
       uses: nanzm/get-time-action@v1.1
