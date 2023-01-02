@@ -47,10 +47,7 @@ jobs:
        # run: echo $date
          
       - name: Image version
-        run: |
-          Version = sh (
-          script: "date +'%Y-%m-%d-%H.%M'",
-          returnStdout: true,
+        run: Version = sh (script:"date +'%Y-%m-%d-%H.%M'", returnStdout:true,)
 
     
       - name: Build the docker image
@@ -59,8 +56,8 @@ jobs:
       - name: Push the image to nexus repo
         run: |
          docker login -u admin -p ${{ secrets.NEXUS_PASSWORD }} http://3.108.254.180:8083
-         docker tag maxhunt/demo:latest 3.108.254.180:8083/java-maven-project/demo:$TIME
-         docker push 3.108.254.180:8083/java-maven-project/demo:$TIME
+         docker tag maxhunt/demo:latest 3.108.254.180:8083/java-maven-project/demo:"${Version}"
+         docker push 3.108.254.180:8083/java-maven-project/demo:"${Version}"
        
       - name: Remove docker image from local
-        run: docker rmi 3.108.254.180:8083/java-maven-project/demo:$TIME
+        run: docker rmi 3.108.254.180:8083/java-maven-project/demo:"${Version}"
