@@ -41,9 +41,9 @@ jobs:
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}
 
+        #env:
       - name: Create image version
-        env: 
-          date: "`r format(Sys.time(), '%d %B, %Y')`"
+        run: date:"`r format(Sys.time(), '%d %B, %Y')`"
          
     
       - name: Build the docker image
