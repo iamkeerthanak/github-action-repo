@@ -46,12 +46,17 @@ jobs:
        #   date: "date +'%Y-%m-%d-%H.%M'"
        # run: echo $date
          
-      - name: Image version
-        run: Version = sh (script:"date +'%Y-%m-%d-%H.%M'", returnStdout:true,)
+     # - name: Image version
+      #  run: Version = sh script:"date +'%Y-%m-%d-%H.%M'", returnStdout:true,
+
+      - name: Set MY_DATE
+        run: echo "MY_DATE=date +'%Y-%m-%d-%H.%M'"
+      - name: Test MY_DATE 
+        run: echo ${{ env.MY_DATE }}
 
     
       - name: Build the docker image
-        run: docker build . --file Dockerfile --tag maxhunt/demo:$TIME
+        run: docker build . --file Dockerfile --tag maxhunt/demo:MY_DATE
  
       - name: Push the image to nexus repo
         run: |
