@@ -46,8 +46,8 @@ jobs:
        #   date: "date +'%Y-%m-%d-%H.%M'"
        # run: echo $date
          
-     # - name: Image version
-      #  run: Version = sh script:"date +'%Y-%m-%d-%H.%M'", returnStdout:true,
+      - name: Image version
+        run: Version = sh script:"date +'%Y-%m-%d-%H.%M'", returnStdout:true
 
       - name: Set MY_DATE
         run: echo "MY_DATE=date +'%Y-%m-%d-%H.%M'"
