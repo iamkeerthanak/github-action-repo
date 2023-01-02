@@ -46,11 +46,11 @@ jobs:
        #   date: "date +'%Y-%m-%d-%H.%M'"
        # run: echo $date
          
-      - name: Usage
-        env:
-         TIME: "${{ date +'%Y-%m-%d-%H.%M' }}"
+      - name: Image version
         run: |
-          echo $TIME
+          Version = sh (
+          script: "date +'%Y-%m-%d-%H.%M'",
+          returnStdout: true,
 
     
       - name: Build the docker image
