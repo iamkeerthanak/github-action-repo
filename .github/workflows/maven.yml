@@ -41,20 +41,26 @@ jobs:
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Create image version
-        env: 
-          date: "date +'%Y-%m-%d-%H.%M'"
-        run: echo $date
-          
+     # - name: Create image version
+      #  env: 
+       #   date: "date +'%Y-%m-%d-%H.%M'"
+       # run: echo $date
+         
+      - name: Usage
+        env:
+         TIME: "${{ date +'%Y-%m-%d-%H.%M' }}"
+        run: |
+          echo $TIME
+
     
       - name: Build the docker image
-        run: docker build . --file Dockerfile --tag maxhunt/demo:$date
+        run: docker build . --file Dockerfile --tag maxhunt/demo:$TIME
  
       - name: Push the image to nexus repo
         run: |
          docker login -u admin -p ${{ secrets.NEXUS_PASSWORD }} http://3.108.254.180:8083
-         docker tag maxhunt/demo:latest 3.108.254.180:8083/java-maven-project/demo:$date
-         docker push 3.108.254.180:8083/java-maven-project/demo:$date
+         docker tag maxhunt/demo:latest 3.108.254.180:8083/java-maven-project/demo:$TIME
+         docker push 3.108.254.180:8083/java-maven-project/demo:$TIME
        
       - name: Remove docker image from local
-        run: docker rmi 3.108.254.180:8083/java-maven-project/demo:v1
+        run: docker rmi 3.108.254.180:8083/java-maven-project/demo:$TIME
