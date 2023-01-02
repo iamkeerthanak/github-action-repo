@@ -41,28 +41,19 @@ jobs:
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}
 
-     # - name: Create image version
-      #  env: 
-       #   date: "date +'%Y-%m-%d-%H.%M'"
-       # run: echo $date
+      - name: Create image version
+        env: 
+          date: "`r format(Sys.time(), '%d %B, %Y')`"
          
-      - name: Image version
-        run: sh "date +'%Y-%m-%d-%H.%M'", returnStdout:true
-
-      #- name: Set MY_DATE
-      #  run: echo "MY_DATE=date +'%Y-%m-%d-%H.%M'"
-      #- name: Test MY_DATE 
-      #  run: echo ${{ env.MY_DATE }}
-
     
       - name: Build the docker image
-        run: docker build . --file Dockerfile --tag maxhunt/demo:MY_DATE
+        run: docker build . --file Dockerfile --tag maxhunt/demo:$date
  
       - name: Push the image to nexus repo
         run: |
          docker login -u admin -p ${{ secrets.NEXUS_PASSWORD }} http://3.108.254.180:8083
-         docker tag maxhunt/demo:latest 3.108.254.180:8083/java-maven-project/demo:"${Version}"
-         docker push 3.108.254.180:8083/java-maven-project/demo:"${Version}"
+         docker tag maxhunt/demo:latest 3.108.254.180:8083/java-maven-project/demo:$date
+         docker push 3.108.254.180:8083/java-maven-project/demo:$date
        
       - name: Remove docker image from local
-        run: docker rmi 3.108.254.180:8083/java-maven-project/demo:"${Version}"
+        run: docker rmi 3.108.254.180:8083/java-maven-project/demo:$date
