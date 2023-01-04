@@ -47,8 +47,8 @@ jobs:
         with:
           images: maxhunt/demo:latest
           tags: |
-            type=raw,value={{date 'YYYYMMDD'}}
-            tags: ${{ steps.meta.outputs.tags }}
+            type=raw,value={{date 'DDMMYYYY'}}
+            #tags: ${{ steps.meta.outputs.tags }}
     
       - name: Build the docker image
         run: docker build . --file Dockerfile --tag maxhunt/demo:latest
@@ -56,8 +56,8 @@ jobs:
       - name: Push the image to nexus repo
         run: |
          docker login -u admin -p ${{ secrets.NEXUS_PASSWORD }} http://65.1.106.105:8083
-         docker tag maxhunt/demo:latest 65.1.106.105:8083/java-maven-project/demo:v1
-         docker push 65.1.106.105:8083/java-maven-project/demo:v1
+         docker tag maxhunt/demo:latest 65.1.106.105:8083/java-maven-project/demo:${{ steps.meta.outputs.tags }}
+         docker push 65.1.106.105:8083/java-maven-project/demo:${{ steps.meta.outputs.tags }}
        
       - name: Remove docker image from local
-        run: docker rmi 65.1.106.105:8083/java-maven-project/demo:v1
+        run: docker rmi 65.1.106.105:8083/java-maven-project/demo:${{ steps.meta.outputs.tags }}
