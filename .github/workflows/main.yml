@@ -41,26 +41,23 @@ jobs:
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}  
     
-      - name: Get Time
-        id: time
-        uses: nanzm/get-time-action@v1.1
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
         with:
-          timeZone: 8
-          format: 'YYYY-MM-DD-HH-mm-ss'
-      - name: Usage
-        env:
-          TIME: "${{ steps.time.outputs.time }}"
-        run: |
-          echo $TIME
+          images: maxhunt/demo:latest
+          tags: |
+            type=raw,value={{date 'YYYYMMDD'}}
+            tags: ${{ steps.meta.outputs.tags }}
     
       - name: Build the docker image
         run: docker build . --file Dockerfile --tag maxhunt/demo:latest
- 
+
       - name: Push the image to nexus repo
         run: |
          docker login -u admin -p ${{ secrets.NEXUS_PASSWORD }} http://65.1.106.105:8083
-         docker tag maxhunt/demo:latest 65.1.106.105:8083/java-maven-project/demo:$TIME
-         docker push 65.1.106.105:8083/java-maven-project/demo:$TIME
+         docker tag maxhunt/demo:latest 65.1.106.105:8083/java-maven-project/demo:v1
+         docker push 65.1.106.105:8083/java-maven-project/demo:v1
        
       - name: Remove docker image from local
-        run: docker rmi 65.1.106.105:8083/java-maven-project/demo:$TIME
+        run: docker rmi 65.1.106.105:8083/java-maven-project/demo:v1
