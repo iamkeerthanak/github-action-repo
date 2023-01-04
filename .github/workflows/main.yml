@@ -47,8 +47,8 @@ jobs:
       - name: Push the image to nexus repo
         run: |
          docker login -u admin -p ${{ secrets.NEXUS_PASSWORD }} http://65.1.106.105:8083
-         docker tag maxhunt/demo:latest 65.1.106.105:8083/java-maven-project/demo:$(git rev-parse --short HEAD)
-         docker push 65.1.106.105:8083/java-maven-project/demo:$(git rev-parse --short HEAD)
+         docker tag maxhunt/demo:latest 65.1.106.105:8083/java-maven-project/demo:$(git rev-parse --timestamp)
+         docker push 65.1.106.105:8083/java-maven-project/demo:$(git rev-parse --timestamp)
        
       - name: Remove docker image from local
-        run: docker rmi 65.1.106.105:8083/java-maven-project/demo:$(git rev-parse --short HEAD)
+        run: docker rmi 65.1.106.105:8083/java-maven-project/demo:$(git rev-parse --timestamp)
