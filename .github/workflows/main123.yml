@@ -1,24 +1,29 @@
-name: Semantic version
-
-on: 
+name: 'Bump Version'
+on:
   push:
-    tags:
-    - '*'
-
+    branches:
+      - master
 jobs:
-
-  build:
+  bump-version:
+    name: 'Bump Version on semver'
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Process version of the tag
-      id: version
-      uses: ncipollo/semantic-version-action@v1
-    - name: Dump steps context
-      env:
-        STEPS_CONTEXT: ${{ toJson(steps.version.outputs) }}
-      run: echo "$STEPS_CONTEXT"
-    - name: Dump previous tag
-      env:
-        PREVIOUS_TAG: ${{ steps.version.outputs.previous_tag }}
-      run: echo "$PREVIOUS_TAG"
+steps:
+      - name: 'Checkout source code'
+        uses: 'actions/checkout@v2'
+        with:
+          ref: ${{ github.ref }}
+      - name: 'cat package.json'
+        run: cat ./package.json
+      - name: 'Automated Version Bump'
+        id: version-bump
+        uses: 'phips28/gh-action-bump-version@master'
+        with:
+          tag-prefix: 'v'
+          minor-wording:  'MINOR'
+          major-wording:  'MAJOR'
+          patch-wording:  'PATCH'
+          rc-wording:     'BETA'
+        env:
+         GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+      - name: 'cat package.json'
+        run: cat ./package.json
