@@ -19,17 +19,17 @@ jobs:
         with:
           java-version: 11
           
-   #  - uses: actions/checkout@v2.5.0
-   #   - name: set release date
-   #     run: |
-   #       echo "BUILD_VERSION=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
+      - name: Display git version outputs
+        run: |
+          echo "Version: ${{ needs.build.outputs.Version }}"
+          echo  "CommitsSinceVersionSource: ${{ needs.build.outputs.CommitsSinceVersionSource }}"
           
-      - name: Generate build number
-        uses: einaregilsson/build-number@v3
-        with:
-          token: ${{secrets.github_token}}        
-      - name: Print new build number
-        run: echo "Build number is $BUILD_NUMBER"   
+    #  - name: Generate build number
+    #    uses: einaregilsson/build-number@v3
+    #    with:
+    #      token: ${{secrets.github_token}}        
+    #  - name: Print new build number
+    #    run: echo "Build number is $BUILD_NUMBER"   
           
       - name: Cache SonarQube packages
         uses: actions/cache@v1
