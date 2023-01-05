@@ -13,7 +13,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-          
+     
+     
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
@@ -46,6 +47,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=java-maven-project
 
+
       - name: Docker login
         uses: docker/login-action@v2
         with:
@@ -56,12 +58,13 @@ jobs:
       - name: Build the docker image
         run: docker build . --file Dockerfile --tag maxhunt/demo:latest
 
+
       - name: Push the image to nexus repo
         run: |
          docker login -u admin -p ${{ secrets.NEXUS_PASSWORD }} http://65.1.106.105:8083
          docker tag maxhunt/demo:latest 65.1.106.105:8083/java-maven-project/demo:$(date +%d-%m-%Y-%H-%M)
          docker push 65.1.106.105:8083/java-maven-project/demo:$(date +%d-%m-%Y-%H-%M)
-         #docker rmi 65.1.106.105:8083/java-maven-project/demo:$(date +%d-%m-%Y-%H-%M)
+
        
      # - name: Remove docker image from local
      #   run: docker rmi 65.1.106.105:8083/java-maven-project/demo:$BUILD_NUMBER
