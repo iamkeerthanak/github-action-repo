@@ -1,4 +1,4 @@
-name: Semantic Version
+name: Semantic version
 
 on: 
   push:
