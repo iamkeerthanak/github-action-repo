@@ -66,5 +66,5 @@ jobs:
          docker push 15.207.100.187:8083/java-maven-project/demo:$(date +%d-%m-%Y-%H-%M)
 
        
-     # - name: Remove docker image from local
-     #   run: docker rmi 15.207.100.187:8083/java-maven-project/demo:$BUILD_NUMBER
+      - name: Remove docker image from local
+        run: docker rmi 15.207.100.187:8083/java-maven-project/demo:$(date +%d-%m-%Y-%H-%M)
